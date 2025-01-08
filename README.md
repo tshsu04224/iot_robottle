@@ -4,11 +4,20 @@
 RoBottle is a Smart Drinking IoT device designed to promote healthy hydration habits. Utilizing a Raspberry Pi Zero 2W and various sensors, the device monitors water quality, water levels, and user drinking behavior. It provides real-time updates and hydration reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping maintain regular hydration throughout the day.
 
 ## **Features**
-- **Water Intake Tracking:** Monitors water consumption using an ultrasonic sensor.
-- **Water Quality Monitoring:** Measures Total Dissolved Solids (TDS) using a TDS sensor.
-- **Hydration Reminders:** LED reminders prompt drinking after an hour of inactivity.
-- **Web Interface:** Displays data via LINE Bot.
-- **Tilt Detection:** Detects when the bottle is tilted using an accelerometer to infer drinking activity.
+- **Water Quality Monitoring (TDS Sensor)**  
+  Measures the Total Dissolved Solids (TDS) value in the water and determines whether it meets safe drinking standards.
+
+- **Water Volume Detection (Ultrasonic Sensor)**  
+  Uses an ultrasonic sensor to measure the remaining water volume in the bottle and calculates the water level percentage.
+
+- **Drinking Behavior Detection (Accelerometer)**  
+  Utilizes an accelerometer to detect the tilt of the bottle, determining whether drinking behavior has occurred.
+
+- **Drinking Reminder (LED + LINE Bot)**  
+  Sends reminders through LED flashing and LINE Bot notifications when there is a prolonged period of inactivity in drinking.
+
+- **LINE Bot Integration**  
+  Interacts with the user via LINE Bot, including features like checking water quality, monitoring water levels, and enabling or disabling drinking reminders.
 
 ## **Required Components**
 
@@ -274,4 +283,119 @@ If your Raspberry Pi doesn’t have a public IP address, you can use **ngrok** t
 You can copy the codes from `linebot.py` to test if your bot works or not.
 Make sure to replace `YOUR_CHANNEL_ACCESS_TOKEN` and `YOUR_CHANNEL_SECRET` with the actual values you obtained from the LINE Developers Console.
 
+### **5. Code Structure and Implementation**
 
+#### **5.1. Hardware Initialization**
+#### GPIO Pin Configuration
+- **TRIG/ECHO (Ultrasonic Sensor)**: Used to measure the water level distance.
+- **LED_PIN (LED Reminder Light)**: Controls the LED flashing for reminders.
+```python
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+GPIO.setup(LED_PIN, GPIO.OUT)
+```
+
+#### Sensor Initialization
+- **ADS1115 (TDS Sensor)**: Configures the gain value `GAIN`, reads analog voltage values, and converts them to TDS.
+- **ADXL345 (Accelerometer)**: Used to detect the tilt of the bottle.
+```python
+adc = ADS1115(address=0x48)
+GAIN = 1
+accelerometer = ADXL345()
+```
+
+#### **5.2. Feature Implementation**
+#### Water Quality Monitoring
+Reads values from the TDS sensor, converts them to ppm, and checks if they exceed the safe threshold.
+```python
+def read_tds(channel=0):
+    raw_value = adc.read_adc(channel, gain=GAIN)
+    voltage = abs(raw_value * (4.096 / 32768.0))
+    tds_value = (133.42 * voltage**3 - 255.86 * voltage**2 + 857.39 * voltage)
+    return max(0, tds_value)
+```
+
+#### Water Level Measurement and Calculation
+The ultrasonic sensor measures distance and calculates the remaining water level percentage:
+```python
+def measure_distance():
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+    # Calculates pulse duration and converts it to distance (cm)
+    pulse_duration = pulse_end - pulse_start
+    return (pulse_duration * 17150) - 14
+
+def calculate_water_level(distance):
+    remaining_height = WATER_BOTTLE_HEIGHT - distance
+    return round((remaining_height / WATER_BOTTLE_HEIGHT) * 100, 2)
+```
+
+#### Drinking Behavior Detection
+Uses the accelerometer to detect bottle tilt, determining drinking actions:
+```python
+def detect_tilt():
+    axes = accelerometer.getAxes(True)
+    x, y, z = axes['x'], axes['y'], axes['z']
+    magnitude = math.sqrt(x**2 + y**2 + z**2)
+    x_angle = x / magnitude
+    y_angle = y / magnitude
+    return abs(x_angle) > 0.5 or abs(y_angle) > 0.5
+```
+
+#### Drinking Reminder
+Controls LED flashing and sends reminder notifications via LINE Bot.
+```python
+def blink_led(duration=5):
+    end_time = time.time() + duration
+    while time.time() < end_time:
+        GPIO.output(LED_PIN, True)
+        time.sleep(0.5)
+        GPIO.output(LED_PIN, False)
+        time.sleep(0.5)
+```
+
+#### **5.3. LINE Bot Integration**
+Starts a web server using the Flask framework to handle LINE Bot Webhook requests.
+- **Command Detection**:
+  - `1`: Check water quality.
+  - `2`: Measure water level and percentage.
+  - `Remind me to drink water` / `Cancel reminder`: Enable or disable the reminder function.
+```python
+@app.route("/", methods=["POST"])
+def linebot():
+    body = request.get_data(as_text=True)
+    signature = request.headers['X-Line-Signature']
+    handler.handle(body, signature)
+
+    msg = json_data['events'][0]['message']['text']
+    if msg == "1":
+        tds_value = read_tds()
+        # Return water quality results
+    elif msg == "2":
+        distance = measure_distance()
+        water_level = calculate_water_level(distance)
+        # Return water level information
+    elif msg == "Remind me to drink water":
+        reminder_enabled = True
+    elif msg == "Cancel reminder":
+        reminder_enabled = False
+```
+
+#### **5.4. Main Program Logic**
+- Continuously monitors the tilt and water level of the bottle.
+- Updates the last drinking time and water level when drinking behavior is detected.
+```python
+def main():
+    global last_drink_time, last_water_level
+    while True:
+        if detect_tilt():
+            initial_distance = measure_distance()
+            time.sleep(3)
+            final_distance = measure_distance()
+            if final_level < initial_level - 1:
+                last_drink_time = time.time()
+                last_water_level = final_level
+        time.sleep(3)
+```
