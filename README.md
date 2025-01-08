@@ -195,6 +195,9 @@ You should see:
 - `0x48` (ADS1115 module address)
 - `0x53` (ADXL345 accelerometer address)
 
+#### **3.7 Test the sensors**
+If you want to test the functionality of these sensors, you can copy my code files `accelerometer.py`, `grove_tds.py`, and `ultraDis.py`, and try running them.
+
 ### **4. LINE Bot Setup**
 
 #### **4.1 Install LINE Bot SDK**
@@ -270,3 +273,5 @@ If your Raspberry Pi doesn’t have a public IP address, you can use **ngrok** t
 
 You can copy the codes from `linebot.py` to test if your bot works or not.
 Make sure to replace `YOUR_CHANNEL_ACCESS_TOKEN` and `YOUR_CHANNEL_SECRET` with the actual values you obtained from the LINE Developers Console.
+
+
