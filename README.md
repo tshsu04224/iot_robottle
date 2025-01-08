@@ -19,7 +19,7 @@ RoBottle is a Smart Drinking IoT device designed to promote healthy hydration ha
 - **LINE Bot Integration**  
   Interacts with the user via LINE Bot, including features like checking water quality, monitoring water levels, and enabling or disabling drinking reminders.
 
-## **🛠️ Required Components**
+## **Required Components 🛠️**
 
 ### **Hardware Requirements**
 - Raspberry Pi Zero 2W
