@@ -359,9 +359,9 @@ def blink_led(duration=5):
 #### **5.3. LINE Bot Integration**
 Starts a web server using the Flask framework to handle LINE Bot Webhook requests.
 - **Command Detection**:
-  - `1`: Check water quality.
-  - `2`: Measure water level and percentage.
-  - `Remind me to drink water` / `Cancel reminder`: Enable or disable the reminder function.
+  - `水質檢測`: Check water quality.
+  - `目前資訊`: Measure water level and percentage.
+  - `提醒我喝水` / `取消提醒`: Enable or disable the reminder function.
 ```python
 @app.route("/", methods=["POST"])
 def linebot():
@@ -370,16 +370,16 @@ def linebot():
     handler.handle(body, signature)
 
     msg = json_data['events'][0]['message']['text']
-    if msg == "1":
+    if msg == "水質檢測":
         tds_value = read_tds()
         # Return water quality results
-    elif msg == "2":
+    elif msg == "目前資訊":
         distance = measure_distance()
         water_level = calculate_water_level(distance)
         # Return water level information
-    elif msg == "Remind me to drink water":
+    elif msg == "提醒我喝水":
         reminder_enabled = True
-    elif msg == "Cancel reminder":
+    elif msg == "取消提醒":
         reminder_enabled = False
 ```
 
