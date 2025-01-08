@@ -21,8 +21,8 @@ Tilt Detection: Detects when the bottle is tilted using an accelerometer to infe
 - Breadboard and Jumper Wires
 
 ### Sofeware Requirements
-- Programming Language:
-  - Python 3
+- Raspbian Buster OS
+- Python 3
 - Libraries:
   - RPi.GPIO: Controls GPIO pins.
   - Flask: Hosts a local server for the LINE Bot.
