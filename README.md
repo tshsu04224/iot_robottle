@@ -21,7 +21,8 @@ Tilt Detection: Detects when the bottle is tilted using an accelerometer to infe
 - Breadboard and Jumper Wires
 
 ### Sofeware Requirements
-- Programming Language: Python 3
+- Programming Language:
+  - Python 3
 - Libraries:
   - RPi.GPIO: Controls GPIO pins.
   - Flask: Hosts a local server for the LINE Bot.
@@ -38,7 +39,7 @@ Sensors collect data (water level, water quality, tilt).
 Raspberry Pi Pico processes the data and controls the LED.
 Flask Server communicates with the LINE Bot for user notifications.
 
-
+## Step-by-Step Implementation
 
 
 
