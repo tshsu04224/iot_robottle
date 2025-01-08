@@ -182,7 +182,7 @@ pip list
 ```
 
 #### **3.6 Verify I2C Interface**
-Ensure I2C is enabled.
+First, ensure I2C is enabled, then:
 
 ##### **3.6.1 Check I2C Devices**
 To check if I2C devices are connected correctly:
