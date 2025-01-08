@@ -1,12 +1,12 @@
 # **RoBottle - The Smart Drinking IoT Device**
 
 ## **Project Overview**
-Robottle is a Smart Drinking IoT device designed to encourage healthy hydration habits. Using a Raspberry Pi Zero 2W and a range of sensors, the device monitors water quality, water levels, and user drinking behavior. It delivers real-time updates and reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping to maintain regular hydration throughout the day.
+RoBottle is a Smart Drinking IoT device designed to promote healthy hydration habits. Utilizing a Raspberry Pi Zero 2W and various sensors, the device monitors water quality, water levels, and user drinking behavior. It provides real-time updates and hydration reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping maintain regular hydration throughout the day.
 
 ## **Features**
 - **Water Intake Tracking:** Monitors water consumption using an ultrasonic sensor.
 - **Water Quality Monitoring:** Measures Total Dissolved Solids (TDS) using a TDS sensor.
-- **Hydration Reminders:** LED reminders to prompt drinking after an hour of inactivity.
+- **Hydration Reminders:** LED reminders prompt drinking after an hour of inactivity.
 - **Web Interface:** Displays data via LINE Bot.
 - **Tilt Detection:** Detects when the bottle is tilted using an accelerometer to infer drinking activity.
 
@@ -31,13 +31,13 @@ Robottle is a Smart Drinking IoT device designed to encourage healthy hydration 
   - Adafruit_ADS1x15: Reads analog data from the TDS sensor.
   - adxl345: Interfaces with the accelerometer.
 - Platforms:
-  - LINE Messaging API: Notifies users with water data.
+  - LINE Messaging API: Sends water data notifications to users.
 
 ## **Circuit Diagram**
 - (Include your circuit diagram here)
 
 ## **System Architecture**
-1. **Sensors** collect data (water level, water quality, tilt).
+1. **Sensors** collect data on water level, water quality, and tilt.
 2. **Raspberry Pi Zero 2W** processes the data and controls the LED.
 3. **Flask Server** communicates with the LINE Bot for user notifications.
 
@@ -46,7 +46,7 @@ Robottle is a Smart Drinking IoT device designed to encourage healthy hydration 
 ### **1. Set Up Raspberry Pi**
 
 #### **1.1 Follow the Raspberry Pi Setup Guide**
-Follow the instructions from the official website to set up your Raspberry Pi:
+Follow the instructions from the official Raspberry Pi website to set up your Raspberry Pi:
 [Getting Started with Raspberry Pi](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 
 #### **1.2 Enable Interfaces (SSH / I2C / VNC)**
@@ -116,7 +116,7 @@ sudo apt install python3 python3-pip -y
 pip3 install --upgrade pip
 ```
 
-#### **3.3 Set Up a Python Virtual Environment (Optional but recommended)**
+#### **3.3 Set Up a Python Virtual Environment (Optional but Recommended)**
 For isolating project dependencies, it is recommended to create a virtual environment:
 ```bash
 sudo apt-get install python3-venv -y
@@ -163,7 +163,7 @@ pip3 install adxl345
 ```
 - **Description:** Used to detect tilt via the accelerometer, which is used to infer drinking behavior.
 
-### **3.5. Verify Installation**
+#### **3.5 Verify Installation**
 
 After installation, verify the libraries:
 ```bash
@@ -181,10 +181,10 @@ Alternatively, for a virtual environment:
 pip list
 ```
 
-### **3.6. Verify I2C Interface **
+#### **3.6 Verify I2C Interface**
 Ensure I2C is enabled.
 
-#### **3.6.1 Check I2C Devices**
+##### **3.6.1 Check I2C Devices**
 To check if I2C devices are connected correctly:
 ```bash
 sudo apt-get install i2c-tools -y
@@ -195,8 +195,9 @@ You should see:
 - `0x48` (ADS1115 module address)
 - `0x53` (ADXL345 accelerometer address)
 
-### **4. Line Bot Setup**
-#### **4.1. Install LINE Bot SDK**
+### **4. LINE Bot Setup**
+
+#### **4.1 Install LINE Bot SDK**
 
 First, install the **line-bot-sdk**, which is the Python package for communicating with the LINE Bot API.
 
@@ -212,15 +213,15 @@ After installation, you can verify the installation with the following command:
 pip3 show line-bot-sdk
 ```
 
-### **4.2. Set Up LINE Bot Developer Account**
+#### **4.2 Set Up LINE Bot Developer Account**
 
 To interact with the LINE Bot, you need to create a LINE Bot and obtain the `Access Token` and `Channel Secret`. These steps are done in the **LINE Developers Console**.
 
-#### 4.2.1 Access LINE Developers Console
+##### **4.2.1 Access LINE Developers Console**
 1. Go to the [LINE Developers Console](https://developers.line.biz/en/).
 2. Log in with your LINE account. If you don’t have an account, register one first.
 
-#### 4.2.2 Create a New Channel (Bot)
+##### **4.2.2 Create a New Channel (Bot)**
 1. In the LINE Developers Console, click **Create New Provider** and name your provider (e.g., RoBottle).
 2. Create a new **Channel**, selecting **Messaging API** as the type.
 3. Fill in the necessary information:
@@ -229,15 +230,15 @@ To interact with the LINE Bot, you need to create a LINE Bot and obtain the `Acc
    - **Channel icon:** Upload an icon for your bot (optional).
 4. After filling out the information, click **Create**.
 
-#### 4.2.3 Obtain LINE Channel Access Token and Secret
+##### **4.2.3 Obtain LINE Channel Access Token and Secret**
 1. On your Channel settings page, find the **Channel Access Token** and **Channel Secret**.
 2. Copy and save these values, as they will be used in the script later.
 
-### 4.3. **Set Up Webhook URL**
+#### **4.3 Set Up Webhook URL**
 
 To enable your LINE Bot to receive messages, you need to set up a Webhook URL. This URL is used to receive messages from LINE users.
 
-#### 4.3.1 Use ngrok to Create a Public URL
+##### **4.3.1 Use ngrok to Create a Public URL**
 
 If your Raspberry Pi doesn’t have a public IP address, you can use **ngrok** to create a temporary public URL for testing.
 
@@ -265,48 +266,7 @@ If your Raspberry Pi doesn’t have a public IP address, you can use **ngrok** t
 
 6. Click **Verify** to ensure the Webhook is set up correctly.
 
-#### 4.3.2 Set Up Webhook URL (Local Flask Server)
+##### **4.3.2 Set Up Webhook URL (Local Flask Server) and Test LINE Bot**
 
-If you're using **Flask** to run your web API, ensure you set up the `/callback` route to handle incoming messages from LINE:
-
-```python
-from flask import Flask, request, abort
-from line_bot_sdk import LineBotApi, WebhookHandler
-from line_bot_sdk.models import MessageEvent, TextMessage
-
-app = Flask(__name__)
-
-line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
-handler = WebhookHandler('YOUR_CHANNEL_SECRET')
-
-@app.route("/callback", methods=['POST'])
-def callback():
-    signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
-    
-    try:
-        handler.handle(body, signature)
-    except:
-        abort(400)
-    
-    return 'OK'
-
-if __name__ == "__main__":
-    app.run(port=5000)
-```
-
+You can copy the codes from `linebot.py` to test if your bot works or not.
 Make sure to replace `YOUR_CHANNEL_ACCESS_TOKEN` and `YOUR_CHANNEL_SECRET` with the actual values you obtained from the LINE Developers Console.
-
-### 4. Test LINE Bot
-
-After completing the above steps, when you send a message to the LINE Bot, it should respond and execute the specified actions. You can write logic to:
-- Send hydration reminders when a user sends a message.
-- Send water quality data when the bot receives specific messages.
-
-### 5. Confirm LINE Bot Setup
-
-In the **LINE Developers Console**, check that your bot’s Webhook settings are correct, and ensure the Webhook URL responds properly to the POST requests from LINE servers.
-
----
-
-These steps should help you set up your LINE Bot and allow it to interact with your Raspberry Pi. If you have any issues, feel free to let me know!
