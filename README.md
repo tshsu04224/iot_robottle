@@ -40,7 +40,8 @@ Raspberry Pi Pico processes the data and controls the LED.
 Flask Server communicates with the LINE Bot for user notifications.
 
 ## Step-by-Step Implementation
-
+1. SetUp Raspberry Pi
+   
 
 
 
