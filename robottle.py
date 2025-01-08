@@ -132,7 +132,7 @@ def linebot():
         user_id = json_data['events'][0]['source']['userId']
         msg = json_data['events'][0]['message']['text']
 
-        if msg == "1":
+        if msg == "水質檢測":
             tds_value = read_tds()
             if tds_value is None:
                 reply = "Error: 無法讀取水質數據，請檢查感測器。"
@@ -140,7 +140,7 @@ def linebot():
                 reply = f"水質檢測結果: {tds_value:.2f} ppm\n警告: 水質不佳，請更換水源！"
             else:
                 reply = f"水質檢測結果: {tds_value:.2f} ppm\n水質良好，適合飲用。"
-        elif msg == "2":
+        elif msg == "目前資訊":
             distance = measure_distance()
             if distance is None:
                 distance_str = "無法測量"
