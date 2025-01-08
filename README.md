@@ -1,9 +1,9 @@
-# **RoBottle - The Smart Drinking IoT Device 💧🤖**
+# **RoBottle - The Smart Drinking IoT Device **
 
-## **📜 Overview**
+## **Overview 📜**
 RoBottle is a Smart Drinking IoT device designed to promote healthy hydration habits. Utilizing a Raspberry Pi Zero 2W and various sensors, the device monitors water quality, water levels, and user drinking behavior. It provides real-time updates and hydration reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping maintain regular hydration throughout the day.
 
-## **✨ Features**
+## **Features ✨**
 - **Water Quality Monitoring (TDS Sensor)**  
   Measures the Total Dissolved Solids (TDS) value in the water and determines whether it meets safe drinking standards.
 
@@ -42,15 +42,15 @@ RoBottle is a Smart Drinking IoT device designed to promote healthy hydration ha
 - Platforms:
   - LINE Messaging API: Sends water data notifications to users.
 
-## **🔌 Circuit Diagram**
+## **Circuit Diagram 🔌**
 - (Include your circuit diagram here)
 
-## **🖥️ System Architecture**
+## **System Architecture 🖥️**
 1. **Sensors** collect data on water level, water quality, and tilt.
 2. **Raspberry Pi Zero 2W** processes the data and controls the LED.
 3. **Flask Server** communicates with the LINE Bot for user notifications.
 
-## **📝 Step-by-Step Implementation**
+## **Step-by-Step Implementation 📝**
 
 ### **1. Set Up Raspberry Pi**
 
@@ -402,6 +402,6 @@ def main():
 
 The complete code file is in `robottle.py`. You can refer to that file for detailed code or try executing it.
 
-## **🎥 Demo Video**
+## **Demo Video 🎥**
 
-## **📚 Reference**
+## **Reference 📚**
