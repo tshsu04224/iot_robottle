@@ -1,4 +1,4 @@
-# **RoBottle - The Smart Drinking IoT Device **
+# **RoBottle - The Smart Drinking IoT Device**
 
 ## **Overview 📜**
 RoBottle is a Smart Drinking IoT device designed to promote healthy hydration habits. Utilizing a Raspberry Pi Zero 2W and various sensors, the device monitors water quality, water levels, and user drinking behavior. It provides real-time updates and hydration reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping maintain regular hydration throughout the day.
