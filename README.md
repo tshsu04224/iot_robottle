@@ -46,7 +46,7 @@ RoBottle is a Smart Drinking IoT device designed to promote healthy hydration ha
  ![circuit diagram](https://github.com/tshsu04224/iot_robottle/blob/main/images/circuit_diagram.png)
 
 ## **System Architecture 🖥️**
-![system architecture]()
+![system architecture](https://github.com/tshsu04224/iot_robottle/blob/main/images/architecture.png)
 
 1. **Sensors** collect data on water level, water quality, and tilt.
 2. **Raspberry Pi Zero 2W** processes the data and controls the LED.
