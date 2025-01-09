@@ -137,13 +137,14 @@ The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an a
 - Wire the SCL pin of the Accelerometer to Physical Pin 5 (SCL) on the Raspberry Pi. 
 
 #### **2.3 AJ-SR04M Ultrasonic Distance Sensor**
-  ![adxl](https://github.com/tshsu04224/iot_robottle/blob/main/images/ajsr04m.png)
+  ![ajsr04m](https://github.com/tshsu04224/iot_robottle/blob/main/images/ajsr04m.png)
 - Wire the GND pin of the Ultrasonic Sensor to Physical Pin 39 (GND) on the Raspberry Pi.  
 - Wire the 5V pin of the Ultrasonic Sensor to Physical Pin 2 (5V) on the Raspberry Pi.
 - Wire the Trig pin of the Ultrasonic Sensor to Physical Pin 7 (GPIO4) on the Raspberry Pi. 
 - Wire the Echo pin of the Ultrasonic Sensor to Physical Pin 11 (GPIO17) on the Raspberry Pi.  
 
 #### **2.4 LED**
+  ![led](https://github.com/tshsu04224/iot_robottle/blob/main/images/led.png)
 - Connect the positive leg (+) of the LED to physical pin 32 (GPIO12) on the Raspberry Pi through a 220-ohm resistor.  
 - Connect the negative leg (-) of the LED directly to physical pin 34 (GND) on the Raspberry Pi.  
 
