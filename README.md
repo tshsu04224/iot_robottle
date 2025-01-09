@@ -117,6 +117,7 @@ Once completed, SSH, I2C, and VNC will be enabled on your Raspberry Pi.
 #### **2.1 Grove TDS sensor and ADS1115 ADC module**
 The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an additional ADC module, ADS1115, is needed to convert analog signals into digital signals.
 1. First, connect ADS1115 ADC module to Raspberry Pi as follows:
+   ![ads](https://github.com/tshsu04224/iot_robottle/blob/main/images/ads.png)
   - Wire the GND pin of the ADC module to Physical Pin 6 (GND) on the Raspberry Pi.  
   - Wire the VDD pin of the ADC module to Physical Pin 1 (3v3) on the Raspberry Pi.  
   - Wire the SDA pin of the ADC module to Physical Pin 3 (SDA) on the Raspberry Pi.
