@@ -235,6 +235,7 @@ i2cdetect -y 1
 ```
 
 You should see:
+[i2C](https://github.com/tshsu04224/iot_robottle/blob/main/images/i2C.png)
 - `0x48` (ADS1115 module address)
 - `0x53` (ADXL345 accelerometer address)
 
