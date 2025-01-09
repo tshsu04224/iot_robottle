@@ -10,8 +10,8 @@ from Adafruit_ADS1x15 import ADS1115
 from adxl345 import ADXL345
 
 # Line Bot 設定
-LINE_CHANNEL_ACCESS_TOKEN = "tM2NhZKvFvYPyRRy+w0Z/UdrsTIVw4UyLALLaJNvsr8vU+BBQ1ho+1+JOI0LPEMahSJD/1RKree312Plkfz9SDysmvZc7rf+Y9c01iET9ndScHOErB6RZbfn/kE9hCDcCzp25IvpKENmjJXhvKxOngdB04t89/1O/w1cDnyilFU="
-LINE_CHANNEL_SECRET = "7397ed1427487598cd18a388d1da2523"
+LINE_CHANNEL_ACCESS_TOKEN = "Your Channel Access Token"
+LINE_CHANNEL_SECRET = "Your Channel Secret"
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
