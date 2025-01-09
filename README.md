@@ -124,11 +124,13 @@ The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an a
   - Wire the SCL pin of the ADC module to Physical Pin 5 (SCL) on the Raspberry Pi.
     
 2. Then, connect Grove TDS sensor to ADC module as follows:
+   ![tds](https://github.com/tshsu04224/iot_robottle/blob/main/images/tds.png)
   - Wire the GND pin of the TDS sensor to the GND pin on the ADC module.  
   - Wire the VCC pin of the TDS sensor to the VDD pin on the ADC module.
   - Wire the SID pin of the TDS sensor to the A0 pin on the ADC module.
  
 #### **2.2 ADXL345 accelerometer sensor**
+  ![adxl](https://github.com/tshsu04224/iot_robottle/blob/main/images/adxl.png)
 - Wire the GND pin of the Accelerometer to Physical Pin 14 (GND) on the Raspberry Pi.  
 - Wire the VCC pin of the Accelerometer to Physical Pin 17 (3v3) on the Raspberry Pi.  
 - Wire the SDA pin of the Accelerometer to Physical Pin 3 (SDA) on the Raspberry Pi.  
