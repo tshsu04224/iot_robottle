@@ -43,9 +43,11 @@ RoBottle is a Smart Drinking IoT device designed to promote healthy hydration ha
   - LINE Messaging API: Sends water data notifications to users.
 
 ## **Circuit Diagram 🔌**
- ![Include your circuit diagram here](https://github.com/tshsu04224/iot_robottle/blob/main/images/circuit_diagram.png)
+ ![circuit diagram](https://github.com/tshsu04224/iot_robottle/blob/main/images/circuit_diagram.png)
 
 ## **System Architecture 🖥️**
+![system architecture]()
+
 1. **Sensors** collect data on water level, water quality, and tilt.
 2. **Raspberry Pi Zero 2W** processes the data and controls the LED.
 3. **Flask Server** communicates with the LINE Bot for user notifications.
