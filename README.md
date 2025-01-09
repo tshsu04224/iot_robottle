@@ -4,20 +4,31 @@
 RoBottle is a Smart Drinking IoT device designed to promote healthy hydration habits. Utilizing a Raspberry Pi Zero 2W and various sensors, the device monitors water quality, water levels, and user drinking behavior. It provides real-time updates and hydration reminders through a LINE bot interface, ensuring users stay hydrated. Additionally, the system prompts users to drink water after extended periods of inactivity, helping maintain regular hydration throughout the day.
 
 ## **Features ✨**
-- **Water Quality Monitoring (TDS Sensor)**  
+1. **Water Quality Monitoring (TDS Sensor)**  
   Measures the Total Dissolved Solids (TDS) value in the water and determines whether it meets safe drinking standards.
 
-- **Water Volume Detection (Ultrasonic Sensor)**  
+2. **Water Volume Detection (Ultrasonic Sensor)**  
   Uses an ultrasonic sensor to measure the remaining water volume in the bottle and calculates the water level percentage.
 
-- **Drinking Behavior Detection (Accelerometer)**  
+3. **Drinking Behavior Detection (Accelerometer)**  
   Utilizes an accelerometer to detect the tilt of the bottle, determining whether drinking behavior has occurred.
 
-- **Drinking Reminder (LED + LINE Bot)**  
+4. **Drinking Reminder (LED + LINE Bot)**  
   Sends reminders through LED flashing and LINE Bot notifications when there is a prolonged period of inactivity in drinking.
 
-- **LINE Bot Integration**  
+5. **LINE Bot Integration**  
   Interacts with the user via LINE Bot, including features like checking water quality, monitoring water levels, and enabling or disabling drinking reminders.
+
+## **System Architecture 🖥️**
+![system architecture](https://github.com/tshsu04224/iot_robottle/blob/main/images/architecture.png)
+
+- The system integrates hardware, software, and external services for a smart drinking IoT device.
+  
+- Sensors (ultrasonic, accelerometer, and TDS) collect data on water level, drinking behavior, and water quality, which are processed by respective functions.
+    
+- The Flask server acts as the central hub, receiving data, processing user requests, and sending notifications.  
+
+- Users interact via a LINE Bot API for real-time updates and commands, while the GPIO controls an LED for hydration reminders.
 
 ## **Required Components 🛠️**
 
@@ -44,13 +55,6 @@ RoBottle is a Smart Drinking IoT device designed to promote healthy hydration ha
 
 ## **Circuit Diagram 🔌**
  ![circuit diagram](https://github.com/tshsu04224/iot_robottle/blob/main/images/circuit_diagram.png)
-
-## **System Architecture 🖥️**
-![system architecture](https://github.com/tshsu04224/iot_robottle/blob/main/images/architecture.png)
-
-1. **Sensors** collect data on water level, water quality, and tilt.
-2. **Raspberry Pi Zero 2W** processes the data and controls the LED.
-3. **Flask Server** communicates with the LINE Bot for user notifications.
 
 ## **Step-by-Step Implementation 📝**
 
@@ -109,7 +113,28 @@ Alternatively, you can enable them using terminal commands:
 Once completed, SSH, I2C, and VNC will be enabled on your Raspberry Pi.
 
 ### **2. Set Up Hardware**
-- (Include detailed steps and diagrams for wiring sensors, LEDs, etc.)
+
+#### **2.1 Grove TDS sensor and ADS1115 ADC module**
+The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an additional ADC module, ADS1115, is needed to convert analog signals into digital signals.
+- First, connect ADS1115 ADC module to Raspberry Pi as follows:
+  - Wire the GND pin of the ADC module to Physical Pin 6 (GND) on the Raspberry Pi.  
+  - Wire the VDD pin of the ADC module to Physical Pin 1 (3v3) on the Raspberry Pi.  
+  - Wire the SDA pin of the ADC module to Physical Pin 3 (SDA) on the Raspberry Pi.
+  - Wire the SCL pin of the ADC module to Physical Pin 5 (SCL) on the Raspberry Pi.
+    
+- Then, connect Grove TDS sensor to ADC module as follows:
+  - Wire the GND pin of the TDS sensor to the GND pin on the ADC module.  
+  - Wire the VCC pin of the TDS sensor to the VDD pin on the ADC module.
+  - Wire the SID pin of the TDS sensor to the A0 pin on the ADC module.
+ 
+  #### **2.2 ADXL345 accelerometer sensor**
+- Wire the GND pin of the Accelerometer to Physical Pin 14 (GND) on the Raspberry Pi.  
+- Wire the VCC pin of the Accelerometer to Physical Pin 17 (3v3) on the Raspberry Pi.  
+- Wire the SDA pin of the Accelerometer to Physical Pin 3 (SDA) on the Raspberry Pi.  
+- Wire the SCL pin of the Accelerometer to Physical Pin 5 (SCL) on the Raspberry Pi. 
+
+#### **2.3 AJ-SR04M Ultrasonic Distance Sensor**
+
 
 ### **3. Install Required Libraries**
 
@@ -407,3 +432,4 @@ The complete code file is in `robottle.py`. You can refer to that file for detai
 ## **Demo Video 🎥**
 
 ## **Reference 📚**
+- [Raspberry Pi Accelerometer using the ADXL345](https://pimylifeup.com/raspberry-pi-accelerometer-adxl345/)
