@@ -116,18 +116,18 @@ Once completed, SSH, I2C, and VNC will be enabled on your Raspberry Pi.
 
 #### **2.1 Grove TDS sensor and ADS1115 ADC module**
 The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an additional ADC module, ADS1115, is needed to convert analog signals into digital signals.
-- First, connect ADS1115 ADC module to Raspberry Pi as follows:
+1. First, connect ADS1115 ADC module to Raspberry Pi as follows:
   - Wire the GND pin of the ADC module to Physical Pin 6 (GND) on the Raspberry Pi.  
   - Wire the VDD pin of the ADC module to Physical Pin 1 (3v3) on the Raspberry Pi.  
   - Wire the SDA pin of the ADC module to Physical Pin 3 (SDA) on the Raspberry Pi.
   - Wire the SCL pin of the ADC module to Physical Pin 5 (SCL) on the Raspberry Pi.
     
-- Then, connect Grove TDS sensor to ADC module as follows:
+2. Then, connect Grove TDS sensor to ADC module as follows:
   - Wire the GND pin of the TDS sensor to the GND pin on the ADC module.  
   - Wire the VCC pin of the TDS sensor to the VDD pin on the ADC module.
   - Wire the SID pin of the TDS sensor to the A0 pin on the ADC module.
  
-  #### **2.2 ADXL345 accelerometer sensor**
+#### **2.2 ADXL345 accelerometer sensor**
 - Wire the GND pin of the Accelerometer to Physical Pin 14 (GND) on the Raspberry Pi.  
 - Wire the VCC pin of the Accelerometer to Physical Pin 17 (3v3) on the Raspberry Pi.  
 - Wire the SDA pin of the Accelerometer to Physical Pin 3 (SDA) on the Raspberry Pi.  
@@ -135,9 +135,13 @@ The GPIO pins on the Raspberry Pi cannot directly handle analog signals, so an a
 
 #### **2.3 AJ-SR04M Ultrasonic Distance Sensor**
 - Wire the GND pin of the Ultrasonic Sensor to Physical Pin 39 (GND) on the Raspberry Pi.  
-- Wire the 5V pin of the Ultrasonic Sensor to Physical Pin 2 (5V) on the Raspberry Pi.  
-- Wire the Echo pin of the Ultrasonic Sensor to Physical Pin 11 (GPIO17) on the Raspberry Pi.  
+- Wire the 5V pin of the Ultrasonic Sensor to Physical Pin 2 (5V) on the Raspberry Pi.
 - Wire the Trig pin of the Ultrasonic Sensor to Physical Pin 7 (GPIO4) on the Raspberry Pi. 
+- Wire the Echo pin of the Ultrasonic Sensor to Physical Pin 11 (GPIO17) on the Raspberry Pi.  
+
+#### **2.4 LED**
+- Connect the positive leg (+) of the LED to physical pin 32 (GPIO12) on the Raspberry Pi through a 220-ohm resistor.  
+- Connect the negative leg (-) of the LED directly to physical pin 34 (GND) on the Raspberry Pi.  
 
 ### **3. Install Required Libraries**
 
