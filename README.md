@@ -452,7 +452,7 @@ def main():
 
 The complete code file is in `robottle.py`. You can refer to that file for detailed code or try executing it.
 
-## **Demo Video 🎥**
+## **[Demo Video](https://youtube.com/shorts/RiBYk9MDmnA?si=cT1atlD9fJNi6Rfa)🎥**
 
 ## **Reference 📚**
 - [Raspberry Pi Accelerometer using the ADXL345](https://pimylifeup.com/raspberry-pi-accelerometer-adxl345/)
