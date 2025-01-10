@@ -259,17 +259,9 @@ If you want to test the functionality of these sensors, you can copy my code fil
 
 ### **4. LINE Bot Setup**
 
-#### **4.1 Install LINE Bot SDK**
+#### **4.1 LINE Bot SDK**
 
-First, install the **line-bot-sdk**, which is the Python package for communicating with the LINE Bot API.
-
-```bash
-pip3 install line-bot-sdk
-```
-
-- **Description:** The `line-bot-sdk` is the official SDK for interacting with the LINE API, allowing you to send messages to users or receive messages from LINE users.
-
-After installation, you can verify the installation with the following command:
+After installation (3.4.2), you can verify the installation with the following command for the LINE Bot SDK:
 
 ```bash
 pip3 show line-bot-sdk
@@ -433,7 +425,7 @@ def linebot():
         reminder_enabled = False
 ```
 
-#### **5.4. Main Program Logic**
+#### **5.4. Main Program**
 - Continuously monitors the tilt and water level of the bottle.
 - Updates the last drinking time and water level when drinking behavior is detected.
 ```python
@@ -455,4 +447,13 @@ The complete code file is in `robottle.py`. You can refer to that file for detai
 ## **[Demo Video](https://youtube.com/shorts/RiBYk9MDmnA?si=cT1atlD9fJNi6Rfa)🎥**
 
 ## **Reference 📚**
+- [Getting started with your Raspberry Pi](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 - [Raspberry Pi Accelerometer using the ADXL345](https://pimylifeup.com/raspberry-pi-accelerometer-adxl345/)
+- [Data Sheet - ADXL345](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf)
+- [Ultrasonic Distance Measurement with a Raspberry Pi](http://www.d3noob.org/2018/04/this-post-is-part-of-book-raspberry-pi.htmlhttp://www.d3noob.org/2018/04/this-post-is-part-of-book-raspberry-pi.html)
+- [Grove - TDS Sensor](https://wiki.seeedstudio.com/Grove-TDS-Sensor/)
+- [Raspberry-Pi-TDS-Sensor](https://github.com/vezorgoat/-Raspberry-Pi-TDS-Sensor)
+- [How to use ADS1115 16-Bit ADC Module with Raspberry Pi](https://how2electronics.com/how-to-use-ads1115-16-bit-adc-module-with-raspberry-pi/)
+- [一起來用 Python 開發 Line 機器人吧！](https://yual.in/posts/python-line-bot-tutorial)
+- [建立並串接 Webhook](https://steam.oxxostudio.tw/category/python/example/line-webhook.html)
+- [Raspberry Pi|ngrok documentation](https://ngrok.com/docs/guides/device-gateway/raspberry-pi/)
